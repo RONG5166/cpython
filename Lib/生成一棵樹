@@ -1,0 +1,44 @@
+import turtle
+
+# Set up the screen
+screen = turtle.Screen()
+screen.bgcolor("sky blue")
+screen.title("Draw a Tree")
+
+# Create the turtle
+tree = turtle.Turtle()
+tree.color("brown")
+tree.pensize(3)
+tree.speed(10)
+
+# Function to draw the trunk
+def draw_trunk(height):
+    tree.penup()
+    tree.goto(0, -200)
+    tree.pendown()
+    tree.setheading(90)
+    tree.forward(height)
+
+# Function to draw branches
+def draw_branch(branch_length, level):
+    if level > 0:
+        tree.forward(branch_length)
+        tree.right(20)
+        draw_branch(branch_length - 15, level - 1)
+        tree.left(40)
+        draw_branch(branch_length - 15, level - 1)
+        tree.right(20)
+        tree.backward(branch_length)
+
+# Draw the tree
+def draw_tree(trunk_height, branch_length, levels):
+    draw_trunk(trunk_height)
+    draw_branch(branch_length, levels)
+
+# Main function
+def main():
+    draw_tree(100, 70, 6)
+    turtle.done()
+
+if __name__ == "__main__":
+    main()
